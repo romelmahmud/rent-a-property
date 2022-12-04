@@ -146,9 +146,7 @@ const PropertySearch = ({
               <option selected value="all">
                 Select Type
               </option>
-              <option selected value="house">
-                House
-              </option>
+              <option value="house">House</option>
               <option value="villa">Villa</option>
             </select>
           </div>

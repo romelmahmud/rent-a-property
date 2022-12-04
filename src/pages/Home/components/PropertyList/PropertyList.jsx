@@ -2,8 +2,12 @@ import React from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 
 const PropertyList = ({ propertyData }) => {
-  if (!propertyData) {
-    return <h2>No Property Found</h2>;
+  if (propertyData.length === 0) {
+    return (
+      <h2 className="text-center text-xl font-bold text-gray-600">
+        No Property Found
+      </h2>
+    );
   }
   return (
     <div
