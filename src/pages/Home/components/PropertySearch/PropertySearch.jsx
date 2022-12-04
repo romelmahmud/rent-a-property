@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { ArrowDownCircleIcon, CalendarIcon } from "@heroicons/react/24/outline";
-import { DayPicker } from "react-day-picker";
+// import { DayPicker } from "react-day-picker";
 
-const PropertySearch = () => {
-  const [showDayPicker, setShowDayPicker] = useState(false);
-  const [dateSelected, setDateSelected] = useState(Date.now());
+const PropertySearch = ({
+  setFilterLocationData,
+  setFilterPrice,
+  setFilterType,
+  filterDate,
+  setFilterDate,
+  handleSubmit,
+}) => {
+  // const [showDayPicker, setShowDayPicker] = useState(false);
   return (
     <>
       <div className="flex justify-between items-center">
@@ -19,7 +25,10 @@ const PropertySearch = () => {
         </div>
       </div>
       <div className="bg-white p-5 my-8">
-        <form className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+        >
           <div className="border-r-2 border-gray-300">
             <label
               htmlFor="location"
@@ -29,6 +38,8 @@ const PropertySearch = () => {
             </label>
             <input
               type="text"
+              name="location"
+              onChange={(e) => setFilterLocationData(e.target.value)}
               className="
         form-control
         block
@@ -63,9 +74,7 @@ const PropertySearch = () => {
               </p>
               <CalendarIcon
                 className="h-5 w-5 text-gray-500 cursor-pointer"
-                onClick={() => setShowDayPicker(!showDayPicker)}
-                data-bs-toggle="modal"
-                data-bs-target="#dateModal"
+                // onClick={() => setShowDayPicker(!showDayPicker)}
               />
             </div>
           </div>
@@ -93,11 +102,14 @@ const PropertySearch = () => {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="price"
+              onChange={(e) => setFilterPrice(e.target.value)}
               aria-label=".form-select-lg example"
             >
-              <option selected value="500-1000">
-                $500 - $1000
+              <option selected value="all">
+                Select Price
               </option>
+              <option value="500-1000">$500 - $1000</option>
               <option value="1001-2000">$1001 - $2000</option>
               <option value="2001-3000">$2001- $3000</option>
               <option value="3001- 5000">$3001 - $5000</option>
@@ -127,8 +139,13 @@ const PropertySearch = () => {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="type"
+              onChange={(e) => setFilterType(e.target.value)}
               aria-label=".form-select-lg example"
             >
+              <option selected value="all">
+                Select Type
+              </option>
               <option selected value="house">
                 House
               </option>
@@ -136,20 +153,23 @@ const PropertySearch = () => {
             </select>
           </div>
           <div className="flex items-center">
-            <button className="text-white py-4 rounded-md border border-blue-700 bg-blue-700 text-xl font-semibold block mx-auto w-3/4 hover:bg-blue-600 transition-all ease-in-out">
+            <button
+              type="submit"
+              className="text-white py-4 rounded-md border border-blue-700 bg-blue-700 text-xl font-semibold block mx-auto w-3/4 hover:bg-blue-600 transition-all ease-in-out"
+            >
               Search
             </button>
           </div>
+          {/* {showDayPicker && (
+            <DayPicker
+              mode="single"
+              selected={filterDate}
+              onSelect={setFilterDate}
+              className="bg-white inline-block p-3 rounded shadow-sm "
+            />
+          )} */}
         </form>
       </div>
-      {showDayPicker && (
-        <DayPicker
-          mode="single"
-          selected={dateSelected}
-          onSelect={setDateSelected}
-          className="bg-white inline-block p-3 rounded shadow-sm "
-        />
-      )}
     </>
   );
 };

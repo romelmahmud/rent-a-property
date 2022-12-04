@@ -1,7 +1,104 @@
 import React from "react";
 
-const PropertyCard = () => {
-  return <div>PropertyCard</div>;
+const PropertyCard = ({ data }) => {
+  const { propertyName, location, imgUrl, price, beds, bathrooms, totalSpace } =
+    data;
+  return (
+    <div className="block rounded-md p-4 shadow-sm shadow-blue-100 bg-white">
+      <img
+        alt={propertyName}
+        src={imgUrl}
+        className="h-56 w-full rounded object-cover"
+      />
+
+      <div className="mt-2">
+        <dl>
+          <div>
+            <dt className="sr-only">Price</dt>
+
+            <dd className="text-md text-gray-600">${price}</dd>
+          </div>
+
+          <div>
+            <dt className="sr-only">Address</dt>
+
+            <dd className="font-semibold text-lg text-gray-700">{location}</dd>
+          </div>
+        </dl>
+
+        <div className="mt-6 flex items-center gap-8 text-xs">
+          <div className="sm:inline-flex sm:shrink-0 sm:items-center">
+            <svg
+              className="h-4 w-4 text-indigo-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+              />
+            </svg>
+
+            <div className="mt-1.5 sm:ml-3 sm:mt-0">
+              <p className="text-gray-500">Space</p>
+
+              <p className="font-medium">{totalSpace} sqf</p>
+            </div>
+          </div>
+
+          <div className="sm:inline-flex sm:shrink-0 sm:items-center">
+            <svg
+              className="h-4 w-4 text-indigo-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+              />
+            </svg>
+
+            <div className="mt-1.5 sm:ml-3 sm:mt-0">
+              <p className="text-gray-500">Bathroom</p>
+
+              <p className="font-medium">{bathrooms}</p>
+            </div>
+          </div>
+
+          <div className="sm:inline-flex sm:shrink-0 sm:items-center">
+            <svg
+              className="h-4 w-4 text-indigo-700"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+
+            <div className="mt-1.5 sm:ml-3 sm:mt-0">
+              <p className="text-gray-500">Bedroom</p>
+
+              <p className="font-medium">{beds}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PropertyCard;
